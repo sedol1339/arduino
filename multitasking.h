@@ -54,10 +54,12 @@ void on_exit(void (*func)())
 
 #include <Arduino.h>
 
+#include "commandHandler.h"
+
 #define MAX_LOOPS 32
 
 struct Loop {
-  String *name;
+  const char* name;
   void (*func)(); //loop function
   unsigned long last_called;
   unsigned long call_interval;
@@ -74,22 +76,24 @@ void remove_loop_internal(int index);
 
 void remove_loop();
 
-void remove_loop(String name);
+void remove_loop(const char* name);
 
 void remove_loop(const char* name);
 
 void handle_exit(const char* reason);
 
-void register_loop_internal(String *name, unsigned long interval, void (*func)());
+void register_loop_internal(const char* name, unsigned long interval, void (*func)());
 
 void register_loop_internal(unsigned long interval, void (*func)());
 
-void register_loop(String name, float millisec, void (*func)());
+void register_loop(const char* name, float millisec, void (*func)());
 
 void register_loop(float millisec, void (*func)());
 
 void delayed_call_internal(unsigned long interval, void (*func)());
 
 void delayed_call(float millisec, void (*func)());
+
+void debugPrintLoops();
 
 #endif

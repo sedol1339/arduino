@@ -57,4 +57,6 @@ void Command(const char* cmd, ...);
 
 void processCommandsAndOutput();
 
+void sendAllBlocking();
+
 #endif

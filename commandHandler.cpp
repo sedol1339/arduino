@@ -91,6 +91,10 @@ void Command(const char* cmd, ...) {
   parseCommandsFromBuffer();
 }
 
+void sendAllBlocking() {
+  Serial.write(outputBuffer, strlen(outputBuffer));
+}
+
 void processCommandsAndOutput() {
   //writing from output buffer to serial
   int maxNonBlockingBytes = Serial.availableForWrite();
